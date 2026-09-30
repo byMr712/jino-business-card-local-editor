@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Mr712</title>
+<meta name="description" content="Тот самый. Выбери, кому показать стихотворение.">
+<meta property="og:title" content="Mr712">
+<meta property="og:description" content="Тот самый. Выбери, кому показать стихотворение.">
+<meta property="og:type" content="website">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ctext y='.9em' font-size='90'%3E%F0%9F%92%97%3C/text%3E%3C/svg%3E">
+<style>
+    @font-face {
+        font-family: 'Aller';
+        src: url('/home/assets/fonts/aller.woff2') format('woff2');
+        font-display: swap;
+    }
+    @font-face {
+        font-family: 'Riffic';
+        src: url('/home/assets/fonts/riffic.woff2') format('woff2');
+        font-display: swap;
+    }
+
+    html, body { margin: 0; padding: 0; background: #171319; }
+
+    .m7-stage {
+        position: relative;
+        min-height: 100vh;
+        box-sizing: border-box;
+        overflow: hidden;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        padding: 40px 8vw 60px 12vw;
+        background:
+            radial-gradient(1100px 700px at 28% 18%, #2c2229, transparent 65%),
+            radial-gradient(900px 600px at 85% 90%, #241d26, transparent 70%),
+            #171319;
+        color: #f3ecf1;
+        font-family: 'Aller', 'Segoe UI', Arial, sans-serif;
+    }
+    .m7-stage * { box-sizing: border-box; margin: 0; padding: 0; }
+    .m7-stage ::selection { background: #ff9ecf; color: #17131a; }
+
+    .m7-stage::after {
+        content: "";
+        position: absolute;
+        inset: 0;
+        pointer-events: none;
+        box-shadow: inset 0 0 180px rgba(0, 0, 0, .55);
+    }
+
+    .m7-logo {
+        position: absolute;
+        top: 34px;
+        left: 44px;
+        font-family: 'Riffic', 'Aller', sans-serif;
+        font-size: 34px;
+        letter-spacing: 1px;
+        color: #ffffff;
+        text-shadow:
+            0 2px 0 #b3548a,
+            0 4px 14px rgba(255, 158, 207, .25);
+        z-index: 2;
+    }
+    .m7-logo::first-letter { color: #ff9ecf; }
+
+    .m7-menu {
+        position: relative;
+        z-index: 2;
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 6px;
+        animation: m7in .6s ease-out both;
+    }
+    .m7-q {
+        margin-bottom: 14px !important;
+        color: #b98ba0;
+        font-style: italic;
+        font-size: 17px;
+        letter-spacing: .5px;
+    }
+
+    .m7-it {
+        display: inline-block;
+        padding: 7px 22px;
+        border-radius: 10px;
+        color: rgba(255, 255, 255, .94);
+        text-decoration: none;
+        font-size: 30px;
+        line-height: 1.25;
+        letter-spacing: .5px;
+        text-shadow: 0 2px 6px rgba(0, 0, 0, .5);
+        transition: background-color .15s ease, color .15s ease, transform .15s ease;
+        cursor: pointer;
+    }
+    .m7-it:hover {
+        background: rgba(255, 158, 207, .16);
+        color: #ffc4de;
+        transform: translateX(8px);
+    }
+    .m7-it:active { transform: translateX(8px) scale(.97); }
+
+    .m7-ver {
+        position: absolute;
+        right: 26px;
+        bottom: 18px;
+        z-index: 2;
+        color: #6e6069;
+        font-size: 13px;
+        letter-spacing: 1px;
+    }
+
+    .m7-h {
+        position: absolute;
+        z-index: 1;
+        color: #ff9ecf;
+        opacity: .10;
+        animation: m7float 5s ease-in-out infinite;
+        pointer-events: none;
+        user-select: none;
+    }
+    .m7-h1 { top: 20%; right: 14%; font-size: 42px; }
+    .m7-h2 { top: 58%; right: 30%; font-size: 30px; animation-delay: 1.1s; }
+    .m7-h3 { bottom: 16%; left: 46%; font-size: 36px; animation-delay: 2.2s; }
+    .m7-wm {
+        position: absolute;
+        top: 50%;
+        left: 68%;
+        z-index: 0;
+        font-size: 340px;
+        color: #ff9ecf;
+        opacity: .04;
+        transform: translateY(-50%);
+        pointer-events: none;
+        user-select: none;
+    }
+
+    @keyframes m7float {
+        0%, 100% { transform: translateY(0); }
+        50%      { transform: translateY(-10px); }
+    }
+    @keyframes m7in {
+        from { opacity: 0; transform: translateY(18px); }
+        to   { opacity: 1; transform: none; }
+    }
+    @media (prefers-reduced-motion: reduce) {
+        .m7-menu, .m7-h { animation: none !important; }
+    }
+
+    @media (max-width: 700px) {
+        .m7-stage { padding: 40px 24px 56px; align-items: center; }
+        .m7-logo { position: static; margin-bottom: 30px; }
+        .m7-menu { align-items: center; text-align: center; }
+        .m7-it { font-size: 25px; }
+        .m7-it:hover { transform: none; }
+        .m7-wm { font-size: 220px; left: auto; right: -40px; }
+        .m7-ver { left: 26px; right: auto; }
+    }
+</style>
+</head>
+<body>
+
+<div class="m7-stage">
+    <span class="m7-h m7-h1">&#9829;</span>
+    <span class="m7-h m7-h2">&#9825;</span>
+    <span class="m7-h m7-h3">&#9829;</span>
+    <span class="m7-wm">&#9829;</span>
+
+    <header class="m7-logo">Mr712</header>
+
+    <main class="m7-menu">
+        <p class="m7-q">Кому показать стихотворение?</p>
+        <a class="m7-it" href="#sayori" data-name="sayori">Sayori</a>
+        <a class="m7-it" href="#natsuki" data-name="natsuki">Natsuki</a>
+        <a class="m7-it" href="#yuri" data-name="yuri">Yuri</a>
+        <a class="m7-it" href="#monika" data-name="monika">Monika</a>
+    </main>
+
+    <footer class="m7-ver">v2</footer>
+</div>
+
+<script>
+(function () {
+    var hoverSnd = new Audio('/home/assets/sfx/hover.ogg');
+    var selectSnd = new Audio('/home/assets/sfx/select.ogg');
+    hoverSnd.preload = 'auto';
+    selectSnd.preload = 'auto';
+    hoverSnd.volume = 0.8;
+    selectSnd.volume = 0.8;
+
+    var items = document.querySelectorAll('.m7-it');
+    Array.prototype.forEach.call(items, function (el) {
+        el.addEventListener('mouseenter', function () {
+            hoverSnd.currentTime = 0;
+            var p = hoverSnd.play();
+            if (p && p.catch) { p.catch(function () {}); }
+        });
+        el.addEventListener('click', function (e) {
+            e.preventDefault();
+            selectSnd.currentTime = 0;
+            var p = selectSnd.play();
+            if (p && p.catch) { p.catch(function () {}); }
+        });
+    });
+})();
+</script>
+
+</body>
+</html>
